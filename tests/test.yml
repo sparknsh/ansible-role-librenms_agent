@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: true
+  gather_timeout: 60
+
+  roles:
+    - role_under_test

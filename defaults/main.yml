@@ -1,0 +1,87 @@
+---
+
+librenms_agent_snmp_ip: 127.0.0.1
+librenms_agent_snmp_port: 161
+
+librenms_agent_snmp_community: public
+
+librenms_agent_snmp_user:
+librenms_agent_snmp_auth_type: # md5 or sha
+librenms_agent_snmp_password:
+librenms_agent_snmp_encryption_type: # aes or des
+librenms_agent_snmp_encryption:
+
+librenms_agent_snmp_location:
+librenms_agent_snmp_contact:
+
+librenms_agent_snmp_no_logging: False
+
+librenms_agent_snmp_mysql_hostname:
+librenms_agent_snmp_mysql_username:
+librenms_agent_snmp_mysql_password:
+librenms_agent_snmp_mysql_port:
+
+librenms_agent_scripts_update: False
+
+librenms_agent_check_mk_scripts: []
+#  - apache
+#  - bind
+#  - ceph
+#  - dmi
+#  - dpkg
+#  - drbd
+#  - freeswitch
+#  - gpsd
+#  - hddtemp
+#  - memcached
+#  - munin
+#  - mysql
+#  - nfsstats
+#  - nginx
+#  - powerdns
+#  - powerdns-recursor
+#  - proxmox
+#  - rocks
+#  - rpm
+#  - rrdcached
+#  - temperature
+#  - tinydns
+#  - unbound
+
+librenms_agent_snmp_scripts: []
+#  - apache-stats
+#  - asterisk
+#  - bind
+#  - chip
+#  - dhcp-status
+#  - distro
+#  - entropy
+#  - exim-stats
+#  - fail2ban
+#  - fbsdnfsclient
+#  - fbsdnfsserver
+#  - freeradius
+#  - mysql
+#  - mysql-stats
+#  - nfs-stats
+#  - nginx-stats
+#  - ntp-client
+#  - ntp-server
+#  - nvidia
+#  - os-updates
+#  - phpfpm-sp
+#  - pi-hole
+#  - postfix-queues
+#  - postfixdetailed
+#  - postgres
+#  - powerdns-dnsdist
+#  - powerdns-recursor
+#  - raspberry
+#  - sdfsinfo
+#  - smart
+#  - squid
+#  - unbound
+#  - ups-apcups
+#  - ups-nut
+#  - zfs-freebsd
+#  - zfs-linux

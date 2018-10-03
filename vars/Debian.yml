@@ -1,0 +1,10 @@
+---
+
+librenms_agent_update_cache: True
+librenms_agent_cache_valid_time: 3600
+
+librenms_agent_dependant_packages:
+  - lsb-release
+  - snmpd
+  - xinetd
+  - check-mk-agent

@@ -1,0 +1,6 @@
+---
+
+librenms_agent_dependant_packages:
+  - net-snmp
+  - xinetd
+  - check-mk-agent

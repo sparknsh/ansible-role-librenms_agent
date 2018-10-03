@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+
+deb {{ 'http://' if not librenms_agent_https else 'https://' }}{{ ansible_distribution  | lower }}.osuosl.org/{{ ansible_distribution  | lower }}/ experimental main
+deb-src {{ 'http://' if not librenms_agent_https else 'https://' }}{{ ansible_distribution  | lower }}.osuosl.org/{{ ansible_distribution  | lower }}/ experimental main

@@ -1,0 +1,13 @@
+---
+
+librenms_agent_https: True
+
+librenms_agent_chcek_mk_dir: /usr/lib/check_mk_agent/local
+librenms_agent_check_mk_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/agent-local
+
+librenms_agent_xinetd_dir: /etc/xinetd.d
+librenms_agent_xinetd_check_mk_disable: False
+
+librenms_agent_snmp_dir: /etc/snmp
+librenms_agent_snmp_scripts_dir: "{{ librenms_agent_snmp_dir }}/scripts"
+librenms_agent_snmp_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp

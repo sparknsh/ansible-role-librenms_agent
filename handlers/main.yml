@@ -1,0 +1,17 @@
+---
+
+- name: Restart snmpd
+  service:
+    name: snmpd
+    state: restarted
+
+- name: Reload snmpd
+  systemd:
+    name: snmpd
+    state: reloaded
+    daemon_reload: yes
+
+- name: Restart xinetd
+  service:
+    name: xinetd
+    state: restarted
