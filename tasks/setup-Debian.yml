@@ -1,20 +1,25 @@
 ---
 
 - name: Check that HTTPS transport is available to APT
-  apt: 
-    name: "apt-transport-https" 
+  apt:
+    name: "apt-transport-https"
     state: present
   when: librenms_agent_https and ansible_distribution == 'Debian'
+
+- name: Check that the experimental repo exists
+  stat:
+    path: "{{ librenms_agent_apt_experimental }}"
+  register: stat_result
 
 - name: Install experimental repo
   template:
     src: "experimental.list.j2"
-    dest: "/etc/apt/sources.list.d/experimental.list"
+    dest: "{{ librenms_agent_apt_experimental }}"
     owner: root
     group: root
     mode: 0644
-  when: ansible_distribution == 'Debian'
-  register: sources_updated 
+  when: ansible_distribution == 'Debian' and stat_result.stat.exists == False
+  register: sources_updated
 
 - name: Update APT cache
   apt:

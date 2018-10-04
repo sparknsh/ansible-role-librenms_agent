@@ -1,0 +1,25 @@
+---
+
+- name: Install Dependancies for mysql script
+  package:
+    name: "{{ librenms_agent_scripts_mysql_packages }}"
+    state: present
+
+- name: MySQL Config snmp
+  template:
+    src: "scripts/mysql.cnf.j2"
+    dest: "{{ librenms_agent_snmp_scripts_dir }}/mysql.cnf"
+    owner:
+    group:
+    mode:
+  when: "'mysql' in librenms_agent_snmp_scripts"
+  notify: Restart snmpd
+
+- name: MySQL Config check_mk
+  template:
+    src: "scripts/mysql.cnf.j2"
+    dest: "{{ librenms_agent_chcek_mk_dir }}/mysql.cnf"
+    owner:
+    group:
+    mode:
+  when: "'mysql' in librenms_agent_check_mk_scripts"

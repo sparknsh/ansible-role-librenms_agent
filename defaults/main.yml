@@ -23,6 +23,7 @@ librenms_agent_snmp_mysql_port:
 
 librenms_agent_scripts_update: False
 
+librenms_agent_check_mk: False
 librenms_agent_check_mk_scripts: []
 #  - apache
 #  - bind

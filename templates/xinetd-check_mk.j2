@@ -50,5 +50,5 @@ service check_mk
 	# the default options will be used for this service.
 	log_on_success =
 
-	disable        = {{ 'yes' if librenms_agent_xinetd_check_mk_disable else 'no' }}
+	disable        = {{ 'yes' if librenms_agent_check_mk_xinetd_disable else 'no' }}
 }

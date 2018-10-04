@@ -24,6 +24,6 @@ galaxy_info:
     - monitoring
     - agent
     - snmp
-    - check_mk
+    - checkmk
 
 dependencies: []

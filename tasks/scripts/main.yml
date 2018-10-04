@@ -1,0 +1,5 @@
+---
+
+- name: MySQL Script
+  include_tasks: mysql.yml
+  when: "'mysql' in librenms_agent_check_mk_scripts or 'mysql' in librenms_agent_snmp_scripts"

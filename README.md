@@ -1,8 +1,10 @@
 # Ansible Role: LibreNMS Agent
 
-#### Version: 1.0.0
+#### Version: 1.0.1
 
 [![pipeline status](https://gitlab.com/sparknsh/ansible-role-librenms-agent/badges/master/pipeline.svg)](https://gitlab.com/sparknsh/ansible-role-librenms-agent/commits/master)
+[![Ansible Role](https://img.shields.io/ansible/role/30333.svg)](https://galaxy.ansible.com/sparknsh/librenms_agent)
+[![Ansible Role](https://img.shields.io/ansible/role/d/30333.svg)](https://galaxy.ansible.com/sparknsh/librenms_agent)
 
 Development of this project is managed in a private repository then pushed out to [GitLab](https://gitlab.com/sparknsh/ansible-role-librenms-agent) and [GitHub](https://github.com/sparknsh/ansible-role-librenms-agent) when we have a new version for you. If you have any issues please contact [sparknsh](https://www.sparknsh.com/contact?type=issue&name=ansible-role-librenms-agent)
 
@@ -23,12 +25,12 @@ librenms_agent_snmp_encryption:
 librenms_agent_snmp_location:
 librenms_agent_snmp_contact:
 ```
-Here are the most common settings for SNMP monitoring. 
+Here are the most common settings for SNMP monitoring.
 
 ```yaml
 librenms_agent_snmp_no_logging: False
 ```
-Not everyone likes logging everything so this variable allows you to no log the snmp information. 
+Not everyone likes logging everything so this variable allows you to no log the snmp information.
 
 ```yaml
 librenms_agent_snmp_mysql_hostname:
@@ -41,7 +43,12 @@ To monitor MySQL database performance you need to connect to the databse server 
 ```yaml
 librenms_agent_scripts_update: False
 ```
-This variable allows you to always fetch the scrip from the github repo. 
+This variable allows you to always fetch the scrip from the github repo.
+
+```yaml
+librenms_agent_check_mk: False
+```
+By default Check_MK is not installed without enabled scripts below. If you want to install it without any scripts change this variable to True.
 
 #### Check_MK Scripts
 

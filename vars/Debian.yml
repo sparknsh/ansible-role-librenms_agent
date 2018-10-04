@@ -1,10 +1,13 @@
 ---
 
+librenms_agent_apt_experimental: /etc/apt/sources.list.d/experimental.list
 librenms_agent_update_cache: True
 librenms_agent_cache_valid_time: 3600
 
-librenms_agent_dependant_packages:
+librenms_agent_snmp_dependant_packages:
   - lsb-release
   - snmpd
+
+librenms_agent_check_mk_dependant_packages:
   - xinetd
   - check-mk-agent

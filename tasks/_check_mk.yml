@@ -1,0 +1,44 @@
+---
+
+- name: Install check_mk Dependancies
+  package:
+    name: "{{ librenms_agent_check_mk_dependant_packages }}"
+    state: present
+
+- name: Creating check_mk folder
+  file:
+    path: "{{ librenms_agent_chcek_mk_dir }}"
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+
+- name: Update check_mk xinetd Config
+  template:
+    src: "xinetd-check_mk.j2"
+    dest: "{{ librenms_agent_check_mk_xinetd_dir }}/check_mk"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart xinetd
+
+- name: Install check_mk Scripts
+  get_url:
+    url: "{{ librenms_agent_check_mk_github_repo }}/{{ item }}"
+    dest: "{{ librenms_agent_chcek_mk_dir }}/{{ item }}"
+    force: "{{ librenms_agent_scripts_update }}"
+    mode: 0755
+  failed_when: false
+  with_flattened: "{{ librenms_agent_check_mk_scripts }}"
+  register: script_results
+
+- name: Install check_mk Scripts with .sh
+  get_url:
+    url: "{{ librenms_agent_check_mk_github_repo }}/{{ item.item }.sh"
+    dest: "{{ librenms_agent_chcek_mk_dir }}/{{ item.item }}"
+    force: "{{ librenms_agent_scripts_update }}"
+    mode: 0755
+  with_items: "{{ script_results.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+  when: item.status_code is defined and item.status_code == 404
