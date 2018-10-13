@@ -1,6 +1,6 @@
 # Ansible Role: LibreNMS Agent
 
-#### Version: 1.0.1
+#### Version: 1.0.2
 
 [![pipeline status](https://gitlab.com/sparknsh/ansible-role-librenms-agent/badges/master/pipeline.svg)](https://gitlab.com/sparknsh/ansible-role-librenms-agent/commits/master)
 [![Ansible Role](https://img.shields.io/ansible/role/30333.svg)](https://galaxy.ansible.com/sparknsh/librenms_agent)

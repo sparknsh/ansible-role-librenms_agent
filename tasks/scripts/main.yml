@@ -1,5 +1,14 @@
 ---
 
+- name: OS Updates Script
+  copy:
+    dest: "/etc/apt/apt.conf.d/10periodic"
+    content: "APT::Periodic::Update-Package-Lists '1';\n"
+    owner: root
+    group: root
+    mode: 0644
+  when: "'os-updates' in librenms_agent_snmp_scripts and ansible_os_family == 'Debian'"
+
 - name: MySQL Script
   include_tasks: mysql.yml
   when: "'mysql' in librenms_agent_check_mk_scripts or 'mysql' in librenms_agent_snmp_scripts"
