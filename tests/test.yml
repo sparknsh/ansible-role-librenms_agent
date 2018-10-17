@@ -8,7 +8,7 @@
       - bind
     librenms_agent_snmp_scripts:
       - distro
-      - os-updates
+      - osupdate
 
   roles:
     - role_under_test

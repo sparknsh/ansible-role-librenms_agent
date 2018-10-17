@@ -1,6 +1,6 @@
 # Ansible Role: LibreNMS Agent
 
-#### Version: 1.0.2
+#### Version: 1.0.3
 
 [![pipeline status](https://gitlab.com/sparknsh/ansible-role-librenms-agent/badges/master/pipeline.svg)](https://gitlab.com/sparknsh/ansible-role-librenms-agent/commits/master)
 [![Ansible Role](https://img.shields.io/ansible/role/30333.svg)](https://galaxy.ansible.com/sparknsh/librenms_agent)
@@ -98,12 +98,12 @@ librenms_agent_snmp_scripts:
   - mysql
   - mysql-stats
   - nfs-stats
-  - nginx-stats
+  - nginx
   - ntp-client
   - ntp-server
   - nvidia
-  - os-updates
-  - phpfpm-sp
+  - osupdate
+  - phpfpmsp
   - pi-hole
   - postfix-queues
   - postfixdetailed
