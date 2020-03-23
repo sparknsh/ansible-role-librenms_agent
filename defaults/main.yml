@@ -1,30 +1,29 @@
 ---
 
-librenms_agent_snmp_ip: 127.0.0.1
-librenms_agent_snmp_port: 161
+librenms_agent__snmp_ip: 127.0.0.1
+librenms_agent__snmp_port: 161
 
-librenms_agent_snmp_community: public
+librenms_agent__snmp_community: public
 
-librenms_agent_snmp_user:
-librenms_agent_snmp_auth_type: # md5 or sha
-librenms_agent_snmp_password:
-librenms_agent_snmp_encryption_type: # aes or des
-librenms_agent_snmp_encryption:
+librenms_agent__snmp_user:
+librenms_agent__snmp_auth_type:
+librenms_agent__snmp_password:
+librenms_agent__snmp_encryption_type:
+librenms_agent__snmp_encryption:
 
-librenms_agent_snmp_location:
-librenms_agent_snmp_contact:
+librenms_agent__snmp_location:
+librenms_agent__snmp_contact:
 
-librenms_agent_snmp_no_logging: False
+librenms_agent__snmp_no_logging: false
 
-librenms_agent_snmp_mysql_hostname:
-librenms_agent_snmp_mysql_username:
-librenms_agent_snmp_mysql_password:
-librenms_agent_snmp_mysql_port:
+librenms_agent__mysql_hostname:
+librenms_agent__mysql_username:
+librenms_agent__mysql_password:
+librenms_agent__mysql_port:
 
-librenms_agent_scripts_update: False
+librenms_agent__scripts_update: false
 
-librenms_agent_check_mk: False
-librenms_agent_check_mk_scripts: []
+librenms_agent__agent_local_scripts: []
 #  - apache
 #  - bind
 #  - ceph
@@ -39,50 +38,68 @@ librenms_agent_check_mk_scripts: []
 #  - mysql
 #  - nfsstats
 #  - nginx
+#  - nginx-python3.py
 #  - powerdns
 #  - powerdns-recursor
 #  - proxmox
-#  - rocks
+#  - rocks.sh
 #  - rpm
 #  - rrdcached
 #  - temperature
 #  - tinydns
-#  - unbound
+#  - unbound.sh
 
-librenms_agent_snmp_scripts: []
+librenms_agent__snmp_scripts: []
 #  - apache-stats
+#  - apache-stats.py
+#  - apache-stats.sh
 #  - asterisk
 #  - bind
-#  - chip
-#  - dhcp-status
+#  - certificate.py
+#  - chip.sh
+#  - dhcp-status.sh
 #  - distro
-#  - entropy
-#  - exim-stats
+#  - entropy.sh
+#  - exim-stats.sh
 #  - fail2ban
 #  - fbsdnfsclient
 #  - fbsdnfsserver
-#  - freeradius
+#  - freeradius.sh
+#  - gpsd
+#  - mailcow-dockerized-postfix
+#  - mailscanner.php
+#  - mdadm
 #  - mysql
 #  - mysql-stats
-#  - nfs-stats
-#  - nginx-stats
+#  - nfs-stats.sh
+#  - nginx
+#  - nginx-python3.py
 #  - ntp-client
-#  - ntp-server
+#  - ntp-server.sh
 #  - nvidia
-#  - os-updates
-#  - phpfpm-sp
+#  - osupdate
+#  - phpfpmsp
 #  - pi-hole
+#  - portactivity
 #  - postfix-queues
 #  - postfixdetailed
 #  - postgres
 #  - powerdns-dnsdist
 #  - powerdns-recursor
-#  - raspberry
+#  - powerdns.py
+#  - puppet_agent.py
+#  - pureftpd.py
+#  - raspberry.sh
 #  - sdfsinfo
+#  - seafile.py
+#  - shoutcast.default.conf
+#  - shoutcast.php
 #  - smart
-#  - squid
+#  - snmpd.conf.example
 #  - unbound
 #  - ups-apcups
-#  - ups-nut
+#  - ups-apcups.sh
+#  - ups-nut.sh
 #  - zfs-freebsd
+#  - zfs-freebsd.py
 #  - zfs-linux

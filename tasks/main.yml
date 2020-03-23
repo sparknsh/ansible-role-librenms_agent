@@ -3,16 +3,55 @@
 - name: "Include {{ ansible_os_family }} Specific Variables"
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: "{{ ansible_os_family }} Fmaily"
-  include_tasks: "setup-{{ ansible_os_family }}.yml"
+- name: Install Dependancies
+  package:
+    name: "{{ librenms_agent__dependant_packages }}"
+    state: present
 
-- name: Install snmp
-  include_tasks: _snmp.yml
-  when: librenms_agent_snmp_scripts is defined and ( librenms_agent_snmp_scripts | length > 0 )
+- name: Creating Scripts Folder
+  file:
+    path: "{{ librenms_agent__scripts_dir }}"
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
 
-- name: Install check_mk
-  include_tasks: _check_mk.yml
-  when: (librenms_agent_check_mk_scripts is defined and ( librenms_agent_check_mk_scripts | length > 0 )) or librenms_agent_check_mk
+- name: Install snmp Scripts
+  get_url:
+    url: "{{ librenms_agent__snmp_github_repo }}/{{ item }}"
+    dest: "{{ librenms_agent__scripts_dir }}/{{ item }}"
+    force: "{{ librenms_agent__scripts_update }}"
+    mode: 0755
+  failed_when: false
+  with_flattened: "{{ librenms_agent__snmp_scripts }}"
+  when: librenms_agent__snmp_scripts is defined and ( librenms_agent__snmp_scripts | length > 0 )
+
+- name: Install Agent Local Scripts
+  get_url:
+    url: "{{ librenms_agent__agent_local_github_repo }}/{{ item }}"
+    dest: "{{ librenms_agent__scripts_dir }}/{{ item }}"
+    force: "{{ librenms_agent__scripts_update }}"
+    mode: 0755
+  failed_when: false
+  with_flattened: "{{ librenms_agent__agent_local_scripts }}"
+  when: librenms_agent__agent_local_scripts is defined and ( librenms_agent__agent_local_scripts | length > 0 )
+
+- name: Disable snmp Logging
+  replace:
+    path: /lib/systemd/system/snmpd.service
+    regexp: '(\s+)-Lsd(\s+.*)?$'
+    replace: '\1-LSed\2'
+  when: librenms_agent__snmp_no_logging
+  notify: Reload snmpd
+
+- name: Configure snmp
+  template:
+    src: "snmpd.conf.j2"
+    dest: "{{ librenms_agent__snmp_dir }}/snmpd.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart snmpd
 
 - name: Configure Scripts
   include_tasks: scripts/main.yml

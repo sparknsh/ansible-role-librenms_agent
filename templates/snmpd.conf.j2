@@ -18,7 +18,7 @@
 #  Listen for connections on all interfaces (both IPv4 *and* IPv6)
 #agentAddress udp:161,udp6:[::1]:161
 
-agentAddress  udp:{{ librenms_agent_snmp_ip }}:{{ librenms_agent_snmp_port }}
+agentAddress  udp:{{ librenms_agent__snmp_ip }}:{{ librenms_agent__snmp_port }}
 
 ###############################################################################
 #
@@ -36,9 +36,9 @@ agentAddress  udp:{{ librenms_agent_snmp_ip }}:{{ librenms_agent_snmp_port }}
 #  If you also change the usernames (which might be sensible),
 #  then remember to update the other occurances in this example config file to match.
 
-{% if librenms_agent_snmp_user %}
-createUser {{ librenms_agent_snmp_user }} {{ librenms_agent_snmp_auth_type | upper }} {{ librenms_agent_snmp_password }} {{ librenms_agent_snmp_encryption_type | upper }} {{ librenms_agent_snmp_encryption }}
-rouser {{ librenms_agent_snmp_user }} priv
+{% if librenms_agent__snmp_user %}
+createUser {{ librenms_agent__snmp_user }} {{ librenms_agent__snmp_auth_type | upper }} {{ librenms_agent__snmp_password }} {{ librenms_agent__snmp_encryption_type | upper }} {{ librenms_agent__snmp_encryption }}
+rouser {{ librenms_agent__snmp_user }} priv
 {% endif %}
 
 
@@ -72,8 +72,8 @@ rouser {{ librenms_agent_snmp_user }} priv
 #  It's no longer typically necessary to use the full 'com2sec/group/access' configuration
 #  r[ow]user and r[ow]community, together with suitable views, should cover most requirements
 
-{% if librenms_agent_snmp_community and not librenms_agent_snmp_user %}
-com2sec readonly  default         {{ librenms_agent_snmp_community }}
+{% if librenms_agent__snmp_community and not librenms_agent__snmp_user %}
+com2sec readonly  default         {{ librenms_agent__snmp_community }}
 
 group ROGroup v2c        readonly
 view all    included  .1                               80
@@ -87,8 +87,8 @@ access ROGroup ""      any       noauth    exact  all    none   none
 
 #  Note that setting these values here, results in the corresponding MIB objects being 'read-only'
 #  See snmpd.conf(5) for more details
-sysLocation    {{ librenms_agent_snmp_location | default('Sitting on the Dock of the Bay', True) }}
-sysContact     {{ librenms_agent_snmp_contact | default('Me <me@example.org>', True) }}
+sysLocation    {{ librenms_agent__snmp_location | default('Sitting on the Dock of the Bay', True) }}
+sysContact     {{ librenms_agent__snmp_contact | default('Me <me@example.org>', True) }}
                                                  # Application + End-to-End layers
 #sysServices    72
 
@@ -150,7 +150,7 @@ sysContact     {{ librenms_agent_snmp_contact | default('Me <me@example.org>', T
 #  Event MIB - automatically generate alerts
 #
                                    # Remember to activate the 'createUser' lines above
-#iquerySecName   internalUser       
+#iquerySecName   internalUser
 #rouser          internalUser
                                    # generate traps on UCD error conditions
 #defaultMonitors          yes
@@ -171,12 +171,28 @@ sysContact     {{ librenms_agent_snmp_contact | default('Me <me@example.org>', T
 # extend-sh test2   echo Hello, world! ; echo Hi there ; exit 35
 # extend-sh test3   /bin/sh /tmp/shtest
 
-{% for script in librenms_agent_snmp_scripts %}
-# {{ script }}
-extend {{ script }} {{ librenms_agent_snmp_scripts_dir }}/{{ script }}
+{% if librenms_agent__snmp_scripts is defined and librenms_agent__snmp_scripts | length > 0 %}
+{% for scripts in librenms_agent__snmp_scripts %}
+{% for script in librenms_agent__scripts %}
+{% if scripts == script.file %}
+# {{ script.name }}
+extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
 
+{% endif %}
 {% endfor %}
+{% endfor %}
+{% endif %}
+{% if librenms_agent__agent_local_scripts is defined and librenms_agent__agent_local_scripts | length > 0 %}
+{% for scripts in librenms_agent__agent_local_scripts %}
+{% for script in librenms_agent__scripts %}
+{% if scripts == script.file %}
+# {{ script.name }}
+extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
 
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
 #  Note that this last entry requires the script '/tmp/shtest' to be created first,
 #    containing the same three shell commands, before the line is uncommented
 

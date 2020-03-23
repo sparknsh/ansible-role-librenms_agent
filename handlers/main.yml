@@ -9,9 +9,4 @@
   systemd:
     name: snmpd
     state: reloaded
-    daemon_reload: yes
-
-- name: Restart xinetd
-  service:
-    name: xinetd
-    state: restarted
+    daemon_reload: true

@@ -1,17 +1,186 @@
 ---
 
-librenms_agent_https: True
+librenms_agent__https: true
 
-librenms_agent_chcek_mk_dir: /usr/lib/check_mk_agent/local
-librenms_agent_check_mk_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/agent-local
+librenms_agent__snmp_dir: /etc/snmp
+librenms_agent__scripts_dir: "{{ librenms_agent__snmp_dir }}/scripts"
+librenms_agent__snmp_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp
+librenms_agent__agent_local_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/agent-local
 
-librenms_agent_check_mk_xinetd_dir: /etc/xinetd.d
-librenms_agent_check_mk_xinetd_disable: False
-
-librenms_agent_snmp_dir: /etc/snmp
-librenms_agent_snmp_scripts_dir: "{{ librenms_agent_snmp_dir }}/scripts"
-librenms_agent_snmp_github_repo: https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp
-
-librenms_agent_scripts_mysql_packages:
+librenms_agent__scripts_mysql_packages:
   - php-cli
   - php-mysql
+
+librenms_agent__scripts:
+  - name: apache-stats
+    file: apache-stats
+    extend: apache
+  - name: apache-stats
+    file: apache-stats.py
+    extend: apache
+  - name: apache-stats
+    file: apache-stats.sh
+    extend: apache
+  - name: asterisk
+    file: asterisk
+    extend: asterisk
+  - name: bind
+    file: bind
+    extend: bind
+  - name: ceph
+    file: ceph
+    extend: ceph
+  - name: certificate
+    file: certificate.py
+    extend: certificate
+  - name: dhcp-status
+    file: dhcp-status.sh
+    extend: dhcp-stats
+  - name: drbd
+    file: drbd
+    extend: drbd
+  - name: entropy
+    file: entropy.sh
+    extend: entropy
+  - name: exim-stats
+    file: exim-stats.sh
+    extend: exim-stats
+  - name: fail2ban
+    file: fail2ban
+    extend: fail2ban
+  - name: fbsdnfsclient
+    file: fbsdnfsclient
+    extend: fbsdnfsclient
+  - name: fbsdnfsserver
+    file: fbsdnfsserver
+    extend: fbsdnfsserver
+  - name: freeradius
+    file: freeradius.sh
+    extend: freeradius
+  - name: freeswitch
+    file: freeswitch
+    extend: freeswitch
+  - name: gpsd
+    file: gpsd
+    extend: gpsd
+  - name: mailcow-postfix
+    file: mailcow-dockerized-postfix
+    extend: mailcow-postfix
+  - name: mailscanner
+    file: mailscanner.php
+    extend: mailscanner
+  - name: mdadm
+    file: mdadm
+    extend: mdadm
+  - name: memcached
+    file: memcached
+    extend: memcached
+  - name: mysql
+    file: mysql
+    extend: mysql
+  - name: nfsstats
+    file: nfsstats
+    extend: nfs-stats
+  - name: nfsstats
+    file: nfs-stats.sh
+    extend: nfs-stats
+  - name: nginx
+    file: nginx
+    extend: nginx
+  - name: nginx
+    file: nginx-python3.py
+    extend: nginx
+  - name: ntp-client
+    file: ntp-client
+    extend: ntp-client
+  - name: ntp-server
+    file: ntp-server.sh
+    extend: ntp-server
+  - name: nvidia
+    file: nvidia
+    extend: nvidia
+  - name: ogs
+    file: rocks.sh
+    extend: ogs
+  - name: osupdate
+    file: osupdate
+    extend: osupdate
+  - name: phpfpmsp
+    file: phpfpmsp
+    extend: phpfpmsp
+  - name: pi-hole
+    file: pi-hole
+    extend: pi-hole
+  - name: portactivity
+    file: portactivity
+    extend: portactivity
+    options: "-p http,ldap,imap"
+  - name: postfix-queues
+    file: postfix-queues
+    extend: mailq
+  - name: postfixdetailed
+    file: postfixdetailed
+    extend: postfixdetailed
+  - name: postgres
+    file: postgres
+    extend: postgres
+  - name: powerdns-dnsdist
+    file: powerdns-dnsdist
+    extend: powerdns-dnsdist
+  - name: powerdns-recursor
+    file: powerdns-recursor
+    extend: powerdns-recursor
+  - name: powerdns
+    file: powerdns
+    extend: powerdns
+  - name: powerdns
+    file: powerdns.py
+    extend: powerdns
+  - name: proxmox
+    file: proxmox
+    extend: proxmox
+  - name: puppet-agent
+    file: puppet_agent.py
+    extend: puppet-agent
+  - name: pureftpd
+    file: pureftpd.py
+    extend: pureftpd
+  - name: rrdcached
+    file: rrdcached
+    extend: rrdcached
+  - name: sdfsinfo
+    file: sdfsinfo
+    extend: sdfsinfo
+  - name: seafile
+    file: seafile.py
+    extend: seafile
+  - name: smart
+    file: smart
+    extend: smart
+  - name: tinydns
+    file: tinydns
+    extend: tinydns
+  - name: unbound
+    file: unbound
+    extend: unbound
+  - name: unbound
+    file: unbound.sh
+    extend: unbound
+  - name: ups-apcups
+    file: ups-apcups
+    extend: ups-apcups
+  - name: ups-apcups
+    file: ups-apcups.sh
+    extend: ups-apcups
+  - name: ups-nut
+    file: ups-nut.sh
+    extend: ups-nut
+  - name: zfs
+    file: zfs-freebsd
+    extend: zfs
+  - name: zfs
+    file: zfs-freebsd.py
+    extend: zfs
+  - name: zfs
+    file: zfs-linux
+    extend: zfs

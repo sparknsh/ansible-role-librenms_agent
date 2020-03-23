@@ -1,0 +1,7 @@
+---
+
+librenms_agent__snmp_scripts:
+  - distro
+
+librenms_agent__agent_local_scripts:
+  - bind

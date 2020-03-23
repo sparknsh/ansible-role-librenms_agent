@@ -4,11 +4,10 @@
   gather_timeout: 60
 
   vars:
-    librenms_agent_check_mk_scripts:
+    librenms_agent__agent_local_scripts:
       - bind
-    librenms_agent_snmp_scripts:
+    librenms_agent__snmp_scripts:
       - distro
-      - osupdate
 
   roles:
     - role_under_test
