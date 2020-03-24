@@ -1,6 +1,6 @@
 # Ansible Role: LibreNMS Agent
 
-#### Version: 1.1.0
+#### Version: 1.1.1
 
 [![](https://img.shields.io/badge/role-sparknsh.librenms_agent-blue.svg)](https://galaxy.ansible.com/sparknsh/librenms_agent)
 

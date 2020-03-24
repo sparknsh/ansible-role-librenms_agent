@@ -36,6 +36,9 @@ librenms_agent__scripts:
   - name: dhcp-status
     file: dhcp-status.sh
     extend: dhcp-stats
+  - name: distro
+    file: distro
+    extend: distro
   - name: drbd
     file: drbd
     extend: drbd

@@ -178,6 +178,7 @@ sysContact     {{ librenms_agent__snmp_contact | default('Me <me@example.org>', 
 # {{ script.name }}
 extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
 
+
 {% endif %}
 {% endfor %}
 {% endfor %}
@@ -188,6 +189,7 @@ extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{%
 {% if scripts == script.file %}
 # {{ script.name }}
 extend {{ script.extend }} {{ librenms_agent__scripts_dir }}/{{ script.file }}{% if script.options is defined %} {{ script.options }}{% endif %}
+
 
 {% endif %}
 {% endfor %}
